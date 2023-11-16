@@ -1,0 +1,29 @@
+class Solution {
+    public boolean isValid(String s) {
+        if (s.isEmpty()) {
+            return true;
+        }
+
+        Map<Character, Character> bracketMap = new HashMap<>();
+        bracketMap.put(')', '(');
+        bracketMap.put(']', '[');
+        bracketMap.put('}', '{');
+
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+            if (bracketMap.containsValue(c)) {
+                stack.push(c);
+            } else if (bracketMap.containsKey(c)) {
+                if (stack.isEmpty() || bracketMap.get(c) != stack.pop()) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+
+        return stack.isEmpty();
+        
+    }
+}

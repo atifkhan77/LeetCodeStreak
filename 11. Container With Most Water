@@ -1,0 +1,34 @@
+public class MaxWaterContainer {
+    public static int maxArea(int[] height) {
+        int maxArea = 0;
+        int left = 0;
+        int right = height.length - 1;
+
+        while (left < right) {
+            // Calculate the width between the lines.
+            int width = right - left;
+
+            // Calculate the height of the container (minimum height of the two lines).
+            int minHeight = Math.min(height[left], height[right]);
+
+            // Update the maximum area if the current area is greater.
+            maxArea = Math.max(maxArea, width * minHeight);
+
+            // Move the pointers towards each other.
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;
+    }
+
+    public static void main(String[] args) {
+        // Example usage:
+        int[] height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+        int result = maxArea(height);
+        System.out.println("Maximum amount of water that can be stored: " + result);
+    }
+}

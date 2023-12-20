@@ -1,0 +1,3 @@
+class Solution:
+    def buyChoco(self, prices: List[int], money: int) -> int:
+        return res if (res:=money-sum(nsmallest(2,prices)))>=0 else money
